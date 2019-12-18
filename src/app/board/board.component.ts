@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {GameService} from '../services/game.service';
+import {Move} from '../models/move.model';
+import {Button} from '../models/button.enum';
+import {Player} from '../models/player.model';
 
 @Component({
   selector: 'app-board',
@@ -10,29 +13,32 @@ export class BoardComponent implements OnInit {
   squares: any[];
   xIsNext: boolean;
   winner: string;
+  player: any;
+  playerTurn: any;
+  move: Move;
   constructor(private gameService: GameService) { }
 
   ngOnInit() {
     // this.NewGame();
+    this.gameService._connect();
     this.gameService.gameChanged.subscribe((game: any[]) => {
       this.squares = game;
+    });
+    this.gameService.playersChanged.subscribe((player: Player) => {
+        this.player = player.playerFiguur;
+    });
+    this.gameService.squaresField.subscribe((field: any[]) => {
+      this.squares = field;
     });
   }
 
   private NewGame() {
     this.gameService.startNewGame();
-    this.squares = Array(9).fill(null);
     this.winner = null;
     this.xIsNext = true;
   }
-  get player() {
-    return this.xIsNext ? 'X' : 'O';
-  }
   makeMove(idx: number) {
-    if (!this.squares[idx]) {
-      this.squares.splice(idx, 1, this.player);
-      this.xIsNext = !this.xIsNext;
-    }
+    this.gameService.makeMove(idx);
     this.winner = this.calculateWinner();
   }
 
