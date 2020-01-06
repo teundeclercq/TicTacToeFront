@@ -30,6 +30,9 @@ export class BoardComponent implements OnInit {
     this.gameService.squaresField.subscribe((field: any[]) => {
       this.squares = field;
     });
+    this.gameService.winner.subscribe((winner: any) => {
+      this.winner = winner;
+    });
   }
 
   private NewGame() {
@@ -39,7 +42,6 @@ export class BoardComponent implements OnInit {
   }
   makeMove(idx: number) {
     this.gameService.makeMove(idx);
-    this.winner = this.calculateWinner();
   }
 
   private calculateWinner() {

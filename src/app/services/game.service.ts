@@ -17,6 +17,7 @@ export class GameService {
   private player: Player;
   public squaresField = new Subject<any[]>();
   public gameChanged = new Subject<any[]>();
+  public winner = new Subject<any>();
   public playersChanged = new Subject<Player>();
 
   constructor() {
@@ -51,6 +52,11 @@ export class GameService {
           _this.player.canMove = true;
           _this.playersChanged.next(_this.player);
           _this.squaresField.next(_this.squares.slice());
+        }
+      });
+      _this.stompClient.subscribe(`/topic/receiveWinner/${JSON.parse(localStorage.getItem('user')).uid}`, function(sdkEvent) {
+        if (sdkEvent != null) {
+           _this.winner.next(sdkEvent.body);
         }
       });
     }, this.errorCallBack);
