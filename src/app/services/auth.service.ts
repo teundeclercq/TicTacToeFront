@@ -7,7 +7,7 @@ import {Injectable} from '@angular/core';
 @Injectable()
 export class AuthService {
   public user: User;
-  public URL = 'https://localhost:8080/';
+  public URL = 'http://localhost:8080/';
   constructor(public afAuth: AngularFireAuth,
               public router: Router,
               public http: HttpClient) {
@@ -50,14 +50,6 @@ export class AuthService {
     } catch (e) {
       console.log(e.message);
     }
-    const user = JSON.parse(localStorage.getItem('user'));
-    this.http.post(`${this.URL}player/`, {user: user.uid, email: user.email }).subscribe(
-      (response) => {
-        console.log(response);
-        debugger;
-      }, error => {
-        console.log(error);
-      });
   }
   public async logout() {
     this.afAuth.auth.signOut().then(() => {
