@@ -15,6 +15,7 @@ import {AuthService} from './services/auth.service';
 import {HttpClientModule} from '@angular/common/http';
 import {AuthGuard} from './services/auth.guard';
 import {GameService} from './services/game.service';
+import { HighscoreComponent } from './highscore/highscore.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {GameService} from './services/game.service';
     LoginComponent,
     RegisterComponent,
     SquareComponent,
-    BoardComponent
+    BoardComponent,
+    HighscoreComponent
   ],
   imports: [
     BrowserModule,
