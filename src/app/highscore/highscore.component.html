@@ -9,12 +9,12 @@
   </tr>
   </thead>
   <tbody>
-  <tr>
-    <th scope="row">1</th>
-    <td>anneschroen@gmail.com</td>
-    <td>teundeclercq@hotmail.com</td>
-    <td>teundeclercq@hotmail.com</td>
-    <td>Time played</td>
+  <tr *ngFor="let item of gameSessions;">
+    <th scope="row">{{item.id}}</th>
+    <td>{{item.playerX}}</td>
+    <td>{{item.playerO}}</td>
+    <td>{{item.playerWhoWon}}</td>
+    <td>{{item.timePlayed}}</td>
   </tr>
   </tbody>
 </table>

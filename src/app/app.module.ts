@@ -16,6 +16,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {AuthGuard} from './services/auth.guard';
 import {GameService} from './services/game.service';
 import { HighscoreComponent } from './highscore/highscore.component';
+import {HighscoreService} from './services/highscore.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { HighscoreComponent } from './highscore/highscore.component';
     AngularFireAuthModule,
     HttpClientModule
   ],
-  providers: [AuthService, AuthGuard, GameService],
+  providers: [AuthService, AuthGuard, GameService, HighscoreService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

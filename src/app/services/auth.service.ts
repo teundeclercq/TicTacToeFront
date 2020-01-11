@@ -7,7 +7,6 @@ import {Injectable} from '@angular/core';
 @Injectable()
 export class AuthService {
   public user: User;
-  public URL = 'http://localhost:8080/';
   constructor(public afAuth: AngularFireAuth,
               public router: Router,
               public http: HttpClient) {
