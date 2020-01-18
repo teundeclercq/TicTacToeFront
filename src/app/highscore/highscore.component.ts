@@ -8,7 +8,7 @@ import {HighscoreService} from '../services/highscore.service';
   styleUrls: ['./highscore.component.css']
 })
 export class HighscoreComponent implements OnInit {
-  private gameSessions: GameSession[] = [];
+  public gameSessions: GameSession[] = [];
   constructor(private highscoreService: HighscoreService) { }
 
   ngOnInit() {

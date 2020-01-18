@@ -35,12 +35,12 @@ export class BoardComponent implements OnInit, OnDestroy{
     });
   }
 
-  private NewGame() {
+  public NewGame() {
     this.gameService.startNewGame();
     this.winner = null;
     this.xIsNext = true;
   }
-  makeMove(idx: number) {
+  public makeMove(idx: number) {
     this.gameService.makeMove(idx);
   }
 

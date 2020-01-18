@@ -30,7 +30,7 @@ pipeline {
     }
     stage('Deploy') {
       steps {
-        sh '''cp -r /var/lib/jenkins/workspace/TicTacToeFront/dist /var/www/tictactoe.teun-school.nl/html/dist'''
+        sh '''cp -r /var/lib/jenkins/workspace/TicTacToe_FrontEnd/dist /var/www/tictactoe.teun-school.nl/html/dist'''
       }
     }
   }
