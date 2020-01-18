@@ -8,6 +8,7 @@
     <span style="flex: 1 1 auto;"></span>
     <ul class="nav">
       <li *ngIf="userLoggedIn(); else loggedOut" class="nav-item"><a class="nav-link" id="logout-tab" style="color: blue; cursor: pointer;" (click)="logoutUser()">Logout</a></li>
+      <li *ngIf="userLoggedIn()" class="nav-item"><a class="nav-link" id="highscore-tab" style="color: blue; cursor: pointer;" routerLink="highscore" routerLinkActive="active">Highscore</a></li>
       <ng-template #loggedOut>
         <li class="nav-item"><a class="nav-link" id="login-tab" routerLink="login" routerLinkActive="active">Login</a></li>
         <li class="nav-item"><a class="nav-link" id="register-tab" routerLink="register" routerLinkActive="active">Register</a></li>

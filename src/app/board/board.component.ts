@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {GameService} from '../services/game.service';
 import {Move} from '../models/move.model';
 import {Button} from '../models/button.enum';
@@ -9,7 +9,7 @@ import {Player} from '../models/player.model';
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.css']
 })
-export class BoardComponent implements OnInit {
+export class BoardComponent implements OnInit, OnDestroy{
   squares: any[];
   xIsNext: boolean;
   winner: string;
@@ -30,6 +30,9 @@ export class BoardComponent implements OnInit {
     this.gameService.squaresField.subscribe((field: any[]) => {
       this.squares = field;
     });
+    this.gameService.winner.subscribe((winner: any) => {
+      this.winner = winner;
+    });
   }
 
   private NewGame() {
@@ -39,7 +42,6 @@ export class BoardComponent implements OnInit {
   }
   makeMove(idx: number) {
     this.gameService.makeMove(idx);
-    this.winner = this.calculateWinner();
   }
 
   private calculateWinner() {
@@ -63,5 +65,9 @@ export class BoardComponent implements OnInit {
       }
     }
     return null;
+  }
+
+  ngOnDestroy() {
+    this.gameService._disconnect();
   }
 }
