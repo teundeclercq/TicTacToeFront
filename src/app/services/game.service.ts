@@ -6,11 +6,11 @@ import {Player} from '../models/player.model';
 import {Move} from '../models/move.model';
 import {Button} from '../models/button.enum';
 import {GameSession} from '../models/game-session.model';
+import {ApiurlService} from './apiurl.service';
 
 @Injectable()
 export class GameService {
   // Fields
-  private websocketEndpoint = 'http://localhost:8080/ws';
   private stompClient: any;
   private topic = '/app/topic';
   private squares: any[];
@@ -20,12 +20,12 @@ export class GameService {
   public gameChanged = new Subject<any[]>();
   public winner = new Subject<any>();
   public playersChanged = new Subject<Player>();
-  constructor() {
+  constructor(private apiurlService: ApiurlService) {
   }
   public _connect() {
     // Connect to websocket
     console.log('Initialize Websocket Connection');
-    const ws = new SockJS(this.websocketEndpoint);
+    const ws = new SockJS(this.apiurlService.API_URL_LIVE_WS);
     this.stompClient = Stomp.over(ws);
     const _this = this;
     this.stompClient.connect({}, function(frame) {
